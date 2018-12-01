@@ -114,6 +114,7 @@ if __name__ == '__main__':
     cv.namedWindow('input')
     cv.setMouseCallback('input',onmouse)
     cv.moveWindow('input',img.shape[1]+10,90)
+    cv.resizeWindow('output', 60, 60)
 
     print(" Instructions: \n")
     print(" Draw a rectangle around the object using right mouse button \n")
