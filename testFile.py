@@ -10,14 +10,13 @@ headers = {
 
 params = urllib.parse.urlencode({
     # Request parameters
-    'visualFeatures': 'Categories',
-    'details': '',
+    'visualFeatures': 'Description',
     'language': 'en',
 })
 
 try:
     conn = http.client.HTTPSConnection('westcentralus.api.cognitive.microsoft.com')
-    conn.request("POST", "/vision/v2.0/analyze?%s" % params, "https://drive.google.com/file/d/1pZhwp7LSH6x2yPaWx7HxKZj136TakHqt", headers)
+    conn.request("POST", "/vision/v2.0/analyze?%s" % params, "https://lh3.googleusercontent.com/LcMEqPsEgElBQDBfn5LZmxkplnEaB78nRgcLQTbb_wQqC7ahr1gr37-2ztY=w1200-h630-p", headers)
     response = conn.getresponse()
     data = response.read()
     print(data)
