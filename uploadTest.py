@@ -6,6 +6,11 @@ app = Flask(__name__)
 def upload_file():
    return render_template('upload.html')
 	
+@app.route('/ping', methods = ['GET'])
+def ping():
+   return 'server running'
+
+
 @app.route('/uploader', methods = ['GET', 'POST'])
 def uploadr_file():
    if request.method == 'POST':
