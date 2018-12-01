@@ -1,28 +1,34 @@
 import serial
 import re
 import numpy
+from flask import Flask
+
+app = Flask(__name__)
+ser = serial.Serial('COM8', 9600, timeout = 1)
 
 def arduinoToFloat(ser):
     return float(next(iter(re.findall(r'-?\d+\.?\d*',ser.readline().decode("utf-8"))), 0))
-serial.Serial.readable
-def getCurrentWeight(ser, samples, tolerance):
-    buffer = []
-    for i in range(samples):
-        buffer.append(ser.readLine())
 
-tolerance = 1
-windowMax = 5
-window = []
-for i in range(windowMax):
-    window.append(0)
-ser = serial.Serial('COM8', 9600, timeout = 1)
-
-while True:
+def getCurrentWeight(ser):
     if (ser.in_waiting):
-        window.pop(0)
-        window.append(arduinoToFloat(ser))
-        print( numpy.amax(window)-numpy.amin(window))
+        return arduinoToFloat(ser)
+    else:
+        while(not ser.in_waiting):
+            continue
+            
+    return arduinoToFloat(ser)
+
+@app.route('/getWeight',methods=['GET'])
+def weightEndpoint():
+    return str(getCurrentWeight(ser))
     #print ("logic")
+@app.route('/tare', methods=['GET'])
+def tareThenGetWeight():
+    while (not ser.writable):
+        continue
+    ser.write(b't')
+    return 'ok'
+
 
 
 
