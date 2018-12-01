@@ -3,7 +3,7 @@ import http.client, urllib.request, urllib.parse, urllib.error, base64
 import logging
 import requests as requests
 
-img_name = 'yogurt.png'
+img_name = 'output.png'
 operation_id = ""
 
 headers = {

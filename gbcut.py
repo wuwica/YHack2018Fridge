@@ -27,5 +27,5 @@ newimg = cv.bitwise_and(newimg,newimg,mask=mask2)
 bar = np.zeros((newimg.shape[0],5,3),np.uint8)
 res = np.hstack((new,bar,img,bar,output))
 '''
-cv.imwrite('cracker.png',newimg)
+cv.imwrite('output.png',newimg)
 plt.imshow(newimg),plt.colorbar(),plt.show()
