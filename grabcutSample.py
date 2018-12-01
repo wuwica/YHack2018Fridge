@@ -102,18 +102,26 @@ if __name__ == '__main__':
     else:
         print("No input image given, so loading default image, lena.jpg \n")
         print("Correct Usage: python grabcut.py <filename> \n")
-        filename = 'yogurt.png'
+        filename = 'granolabar.png'
 
     img = cv.imread(cv.samples.findFile(filename))
     img2 = img.copy()                               # a copy of original image
     mask = np.zeros(img.shape[:2],dtype = np.uint8) # mask initialized to PR_BG
     output = np.zeros(img.shape,np.uint8)           # output image to be shown
 
+
+    height, width, channels = img.shape
+
+    print(height)
+    print(width)
+
     # input and output windows
-    cv.namedWindow('output')
-    cv.namedWindow('input')
+    cv.namedWindow('output',cv.WINDOW_NORMAL)
+    cv.namedWindow('input', cv.WINDOW_NORMAL)
+    #cv.namedWindow('input')
     cv.setMouseCallback('input',onmouse)
-    cv.moveWindow('input',img.shape[1]+10,90)
+    #cv.moveWindow('input',img.shape[1]+10,90)
+    
 
     print(" Instructions: \n")
     print(" Draw a rectangle around the object using right mouse button \n")
@@ -121,7 +129,9 @@ if __name__ == '__main__':
     while(1):
 
         cv.imshow('output',output)
+        cv.resizeWindow('output', 1000, 1000)
         cv.imshow('input',img)
+        #cv.resizeWindow('input', width, height)
         k = cv.waitKey(1)
 
         # key bindings
