@@ -149,8 +149,8 @@ if __name__ == '__main__':
             value = DRAW_PR_FG
         elif k == ord('s'): # save image
             bar = np.zeros((img.shape[0],5,3),np.uint8)
-            res = np.hstack((img2,bar,img,bar,output))
-            cv.imwrite('grabcut_output.png',res)
+            #res = np.hstack((img2,bar,img,bar,output))
+            cv.imwrite('grabcut_output.png',output)
             print(" Result saved as image \n")
         elif k == ord('r'): # reset everything
             print("resetting \n")
