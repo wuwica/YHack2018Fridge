@@ -8,10 +8,10 @@ MIN_MATCH_COUNT=10
 CUSHION = 8
 NEGCUSHION = -8
 
-def setTarget(targetName):
+def setTarget(targetName, dirBool):
     requests.post('https://wuwicajon.wixsite.com/test/_functions-dev/setTarget',
     params=urllib.parse.urlencode({
-    'target': targetName}))
+    'target': targetName, 'add': dirBool}))
 
 class CameraThread(threading.Thread):
 
@@ -97,7 +97,7 @@ class CameraThread(threading.Thread):
                         self.foundList[i] += 1
                     elif (self.foundList[i] == CUSHION and self.sentFlag[i] == False):
                         targetName = self.labelList[i]
-                        setTarget(targetName)
+                        setTarget(targetName,True)
                         print("send found %s", targetName)
                         self.sentFlag[i] = True         
             else:
@@ -109,7 +109,7 @@ class CameraThread(threading.Thread):
                     self.foundList[i] -= 1
                 elif (self.foundList[i] == NEGCUSHION and self.sentFlag[i] == False):
                     targetName = self.labelList[i]
-                    setTarget(targetName)
+                    setTarget(targetName,False)
                     print("send remove %s", targetName)
                     self.sentFlag[i] = True    
             #print("i %d foundList count %d", i, self.foundList[i] )
