@@ -86,6 +86,8 @@ class CameraThread(threading.Thread):
                 trainBorder=np.float32([[[0,0],[0,h-1],[w-1,h-1],[w-1,0]]])
                 if Hret is not None:
                     queryBorder=cv2.perspectiveTransform(trainBorder,Hret)
+                    #print(queryBorder)
+                    cv2.putText(QueryImgBGR,self.labelList[i],(queryBorder[0][0][0],queryBorder[0][0][1]),cv2.FONT_HERSHEY_SIMPLEX,2,[255,255,255],lineType=cv2.LINE_AA)
                     cv2.polylines(QueryImgBGR,[np.int32(queryBorder)],True,(255,255,0),5) 
                     
                     if (self.foundList[i] == 0):
@@ -110,7 +112,7 @@ class CameraThread(threading.Thread):
                     setTarget(targetName)
                     print("send remove %s", targetName)
                     self.sentFlag[i] = True    
-            print("i %d foundList count %d", i, self.foundList[i] )
+            #print("i %d foundList count %d", i, self.foundList[i] )
             cv2.imshow('camera',QueryImgBGR)
             if cv2.waitKey(10)==ord('q'):
                 break
