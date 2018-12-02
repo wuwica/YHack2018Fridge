@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 def gbcutImg(picname):
     #inputname = "banana.jpg" example
     #outputname = "banana.png" example
-    inputname = picname + 'jpg'
-    outputname = picname + 'png'
+    inputname = picname + '.jpg'
+    outputname = picname + '.png'
     #rescale img
     oriimg = cv.imread(inputname)
     height, width, channels = oriimg.shape

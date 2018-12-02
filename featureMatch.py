@@ -28,6 +28,7 @@ isOne = False
 
 cam=cv2.VideoCapture(0)
 while True:
+
     ret, QueryImgBGR=cam.read()
     QueryImg=cv2.cvtColor(QueryImgBGR,cv2.COLOR_BGR2GRAY)
     #QueryImg = QueryImg.astype('uint8')
