@@ -1,7 +1,9 @@
 # YHack2018Fridge
-Item tracking via Vision using feature detector
+
+Item tracking via computer vision using feature detector in OpenCV
 
 ##Environment Setup
+
 * Download [Conda](https://www.anaconda.com/download/)
 
 ```
